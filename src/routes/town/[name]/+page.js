@@ -1,0 +1,11 @@
+
+/** @type {import('./$types').PageLoad} */
+export function load({params}) {
+
+    return {
+        town: {
+            name: params.name
+        }
+    }
+
+}

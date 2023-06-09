@@ -1,0 +1,1 @@
+export const APIBase = "https://api.earthmc.net/v1/aurora"
