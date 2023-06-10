@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-100;
+    font-family: "Poppins", sans-serif;
+
+}
+
+input[type=text] {
+
+    @apply outline-none;
+    @apply p-1;
+    @apply rounded-sm;
+    @apply border-2;
+    @apply border-gray-300;
+    @apply transition-all;
+
+}
+
+input[type=text]:focus {
+    
+    @apply outline-none;
+    @apply border-cyan-700;
+
+}
+
+button {
+
+    @apply bg-cyan-700;
+    @apply text-white;
+    @apply rounded-sm;
+    @apply p-1;
+    @apply pl-2;
+    @apply pr-2;
+    @apply border-2;
+    @apply border-cyan-700;
+    @apply transition-all;
+
+}
+
+button:focus,button:hover {
+
+    @apply bg-transparent;
+    @apply text-cyan-700;
+
+}
