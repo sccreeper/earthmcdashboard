@@ -9,6 +9,13 @@ export async function load() {
     const nation_res = await fetch(APIBase + "/nations")
     const nation_json = await nation_res.json()
 
-    return {towns: town_json.allTowns, nations: nation_json.allNations}
+    const server_status = await fetch("https://api.mcstatus.io/v2/status/java/play.earthmc.net")
+    const status_json = await server_status.json()
+
+    return {
+        towns: town_json.allTowns, 
+        nations: nation_json.allNations, 
+        online: status_json.players.online
+    }
 
 }

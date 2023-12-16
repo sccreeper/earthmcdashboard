@@ -1,113 +1,104 @@
 <script>
-    import { goto } from "$app/navigation";
-    import bg_image from "../images/map.png";
+    import SettlementResult from "$lib/components/SettlementResult.svelte";
+    import { onMount, setContext } from "svelte";
 
     /** @type {import('./$types').PageData} */
     export let data;
     let search_value = "";
+    let previous_search_value = "";
 
     /**
-     * @type {string[]}
+     * @type {Object.<string[], string[]>}
      */
-    let table_data = [];
+    let table_data = { towns: [], nations: [] };
 
     function updateTable() {
-        table_data = [];
+        previous_search_value = search_value
+
+        table_data = { towns: [], nations: [] };
 
         data.towns.forEach((/** @type {string} */ element) => {
             if (element.toLowerCase().includes(search_value.toLowerCase())) {
-                table_data = [...table_data, element];
+                table_data.towns = [...table_data.towns, element];
             }
         });
 
-        if (table_data.length == 1) {
-            goto(`/town/${table_data[0]}`);
-        }
+        data.nations.forEach((/** @type {string} */ element) => {
+            if (element.toLowerCase().includes(search_value.toLowerCase())) {
+                table_data.nations = [...table_data.nations, element];
+            }
+        });
     }
+
+    onMount(() => {
+        console.log("context")
+        setContext("title", "Home - EMC stats")
+    })
 </script>
 
-<!-- Outermost container -->
-<div class="h-full">
-    <div class="header-bg" style="background-image: url({bg_image});">
-        <div class="header-div">
-            <h1 class="header">EarthMC dashboard</h1>
-        </div>
-    </div>
-
-    <div class="stats-container">
-        
-        <p>{data.nations.length} <span>nations</span></p>
-        <p>{data.towns.length} <span>towns</span></p>
-
-    </div>
-
-    <div class="search-box-container">
-        <div class="search">
-            <input
-            type="text"
-            placeholder="Search for a player, town or nation"
-            bind:value={search_value}/>
-            <button on:click={updateTable}>Search</button>
-        </div>
-    </div>
-
-    {#if table_data.length != 0}
-
-    <table>
-        <thead>
-            <td>Name</td>
-        </thead>
-        {#each table_data as t}
-        <tr>
-            <td>
-                <a href={`/town/${t}`}>{t}</a>
-            </td>
-        </tr>
-    {/each}
-    </table>
-
-    {/if}
-
+<!-- Nation and town stats -->
+<div class="stats-container">
+    <p>{data.nations.length} <span>nations</span></p>
+    <p>{data.towns.length} <span>towns</span></p>
+    <p>{data.online} <span>online</span></p>
 </div>
 
+<!-- Search box -->
+<div class="search-box-container">
+    <div class="search">
+        <input
+            type="text"
+            placeholder="Search for a player, town or nation"
+            bind:value={search_value}
+        />
+        <button on:click={updateTable}>Search</button>
+    </div>
+</div>
+
+<!-- Search results for nations & towns -->
+
+{#if table_data.towns.length == 0 && table_data.nations.length == 0}
+    <h3 class="w-full text-center">Search for a town or a nation.</h3>
+{:else}
+    <div class="settlement-results">
+        <div class="w-1/3">
+            <h3 class="table-heading">Towns</h3>
+            {#if table_data.towns.length == 0}
+                <p>No towns matching "{previous_search_value}"</p>
+            {:else}
+                <div class="res-table">
+                    {#each table_data.towns as t}
+                        <SettlementResult name={t} type="town" />
+                    {/each}
+                </div>
+            {/if}
+        </div>
+        <div class="w-1/3">
+            <h3 class="table-heading">Nations</h3>
+            {#if table_data.nations.length == 0}
+                <p>No nations matching "{previous_search_value}"</p>
+            {:else}
+                <div class="res-table">
+                    {#each table_data.nations as n}
+                        <SettlementResult name={n} type="nation" />
+                    {/each}
+                </div>
+            {/if}
+        </div>
+    </div>
+{/if}
+
 <style>
-    .header-div {
-        @apply h-full;
-        @apply w-full;
-        @apply backdrop-blur-sm;
-
-        @apply flex;
-        @apply justify-center;
-        @apply items-center;
-    }
-
-    .header-bg {
-        @apply bg-center;
-        height: 40%;
-        @apply w-full;
-    }
-
-    .header {
-        @apply text-6xl;
-        @apply font-bold;
-        @apply text-white;
-        @apply drop-shadow-2xl;
-    }
-
     .search-box-container {
-
         @apply w-full;
         @apply flex;
         @apply justify-center;
         @apply mt-3;
         @apply mb-3;
-
     }
 
     .search input {
-
         @apply w-3/4;
-
     }
 
     .search {
@@ -125,14 +116,18 @@
     }
 
     .stats-container p {
-
         @apply text-xl;
-
     }
 
     .stats-container span {
-
         @apply font-extralight;
+    }
 
+    .settlement-results {
+        @apply w-full;
+        @apply flex;
+        @apply flex-row;
+        @apply justify-center;
+        @apply gap-7;
     }
 </style>
