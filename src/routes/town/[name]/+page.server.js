@@ -15,11 +15,11 @@ export async function load({ params }) {
 
     let leader_uuid
 
-    const leader_uuid_res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${town_json.strings.mayor}`)
+    const leader_uuid_res = await fetch(`https://playerdb.co/api/player/minecraft/${town_json.strings.mayor}`)
     if (leader_uuid_res.status != 200) {
         leader_uuid = "0"
     } else {
-        leader_uuid = (await leader_uuid_res.json()).id
+        leader_uuid = (await leader_uuid_res.json()).data.player.id
     }
 
 
