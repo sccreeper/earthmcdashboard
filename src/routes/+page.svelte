@@ -1,6 +1,5 @@
 <script>
     import ResultsList from "$lib/components/ResultsList.svelte";
-import SettlementResult from "$lib/components/SettlementResult.svelte";
     import { list } from "postcss";
     import { onMount, setContext } from "svelte";
 

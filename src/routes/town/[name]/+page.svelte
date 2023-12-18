@@ -1,9 +1,11 @@
 <script>
     import Coordinates from '$lib/components/Coordinates.svelte';
     import LeaderInfo from '$lib/components/LeaderInfo.svelte';
+    import ResultsList from '$lib/components/ResultsList.svelte';
     import StatusBool from '$lib/components/StatusBool.svelte';
     import { HeaderContext, TitleContext } from '$lib/consts';
     import { prettyDate } from '$lib/util';
+    import { Result } from 'postcss';
     import { getContext, setContext } from 'svelte';
 
     /** @type {import('./$types').PageData} */
@@ -35,13 +37,7 @@
 
         <h1 class="table-heading">Residents</h1>
 
-        <div class="res-table">
-            {#each data.town.residents as resident }
-
-                <span>{resident}</span>
-
-            {/each}
-        </div>
+        <ResultsList list={data.town.residents} type="resident" limit={12}/>
 
     </div>
     

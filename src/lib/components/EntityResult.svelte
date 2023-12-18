@@ -8,7 +8,15 @@
 
 </script>
 
+{#if type != "resident"}
+
 <span><a href={`/${type}/${name}`}>{name.replaceAll("_", " ")}</a></span>
+
+{:else}
+
+<span>{name}</span>
+
+{/if}
 
 <style>
     span {

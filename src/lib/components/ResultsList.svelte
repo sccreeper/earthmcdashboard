@@ -1,6 +1,6 @@
 <script>
     import { clamp } from "$lib/util";
-    import SettlementResult from "./SettlementResult.svelte";
+    import EntityResult from "./EntityResult.svelte";
 
 
 
@@ -61,7 +61,7 @@
 
 {#each list.slice(ranges[page-1][0], ranges[page-1][1]) as item }
 
-<SettlementResult name={item} type={type}/>
+<EntityResult name={item} type={type}/>
 
 {/each}
 
@@ -75,7 +75,7 @@
 
 {#each list as item }
 
-<SettlementResult name={item} type={type}/>
+<EntityResult name={item} type={type}/>
 
 {/each}
 
