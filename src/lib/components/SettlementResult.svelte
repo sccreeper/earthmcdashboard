@@ -1,6 +1,9 @@
 <script>
 
-    export let name = ""
+    /**
+     * @type {string|any}
+     */
+    export let name;
     export let type = "town" || "nation"
 
 </script>

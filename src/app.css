@@ -12,7 +12,7 @@ body {
 
 }
 
-input[type=text] {
+input[type=text],input[type=number] {
 
     @apply outline-none;
     @apply p-1;
@@ -23,11 +23,15 @@ input[type=text] {
 
 }
 
-input[type=text]:focus {
+input[type=text]:focus,input[type=number]:focus {
     
     @apply outline-none;
     @apply border-cyan-700;
 
+}
+
+input[type=number] {
+    @apply w-16;
 }
 
 button {

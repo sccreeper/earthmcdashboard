@@ -1,5 +1,7 @@
 <script>
-    import SettlementResult from "$lib/components/SettlementResult.svelte";
+    import ResultsList from "$lib/components/ResultsList.svelte";
+import SettlementResult from "$lib/components/SettlementResult.svelte";
+    import { list } from "postcss";
     import { onMount, setContext } from "svelte";
 
     /** @type {import('./$types').PageData} */
@@ -67,9 +69,7 @@
                 <p>No towns matching "{previous_search_value}"</p>
             {:else}
                 <div class="res-table">
-                    {#each table_data.towns as t}
-                        <SettlementResult name={t} type="town" />
-                    {/each}
+                    <ResultsList limit={12} list={table_data.towns} type="town"/>
                 </div>
             {/if}
         </div>
@@ -78,11 +78,7 @@
             {#if table_data.nations.length == 0}
                 <p>No nations matching "{previous_search_value}"</p>
             {:else}
-                <div class="res-table">
-                    {#each table_data.nations as n}
-                        <SettlementResult name={n} type="nation" />
-                    {/each}
-                </div>
+                <ResultsList limit={12} list={table_data.nations} type="nation"/>
             {/if}
         </div>
     </div>
