@@ -1,5 +1,6 @@
 <script>
-    import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
+    import OpenGraph from "$lib/components/OpenGraph.svelte";
+import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
     import { getContext } from "svelte";
 
     const { title } = getContext(TitleContext)
@@ -12,6 +13,8 @@
     $subheader = ""
 
 </script>
+
+<OpenGraph title="About" description=""/>
 
 <div class="flex flex-col items-center justify-center">
 
