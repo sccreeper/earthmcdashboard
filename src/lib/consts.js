@@ -3,6 +3,7 @@ export const SkinAPIBase = "https://api.mineatar.io"
 
 export const TitleContext = "title"
 export const HeaderContext = "header"
+export const SubheaderContext = "subheader"
 
 export const DefaultMapColour = "3FB4FF"
 

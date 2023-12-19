@@ -12,6 +12,8 @@
         </h1>
             
         <h2 class="text-xl">{text}</h2>
+
+        <p><a href="/">Home</a></p>
     </div>
 
 </div>

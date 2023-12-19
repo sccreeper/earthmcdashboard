@@ -8,7 +8,11 @@ export async function load({ params }) {
     const ok = await town_res.ok
 
     if (!ok) {
-        throw error(404, "Town does not exist")
+        if (town_res.status == 404) {
+            throw error(404, "Nation does not exist")
+        } else {
+            throw error(town_res.status,  await town_res.text())
+        }
     }
 
     const town_json = await town_res.json()

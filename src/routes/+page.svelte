@@ -1,7 +1,9 @@
 <script>
+    import OpenGraph from "$lib/components/OpenGraph.svelte";
     import ResultsList from "$lib/components/ResultsList.svelte";
+    import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
     import { list } from "postcss";
-    import { onMount, setContext } from "svelte";
+    import { getContext, onMount, setContext } from "svelte";
 
     /** @type {import('./$types').PageData} */
     export let data;
@@ -31,11 +33,18 @@
         });
     }
 
-    onMount(() => {
-        console.log("context")
-        setContext("title", "Home - EMC stats")
-    })
+
+    const { header } = getContext(HeaderContext)
+    const { title } = getContext(TitleContext)
+    const { subheader } = getContext(SubheaderContext)
+
+    $header = "EMC Stats"
+    $title = "Home - EMC Stats"
+    $subheader = ""
+
 </script>
+
+<OpenGraph title="Home" description=""/>
 
 <!-- Nation and town stats -->
 <div class="stats-container">

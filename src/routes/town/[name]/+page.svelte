@@ -1,23 +1,27 @@
 <script>
     import Coordinates from '$lib/components/Coordinates.svelte';
     import LeaderInfo from '$lib/components/LeaderInfo.svelte';
+    import OpenGraph from '$lib/components/OpenGraph.svelte';
     import ResultsList from '$lib/components/ResultsList.svelte';
     import StatusBool from '$lib/components/StatusBool.svelte';
-    import { HeaderContext, TitleContext } from '$lib/consts';
+    import { HeaderContext, SubheaderContext, TitleContext } from '$lib/consts';
     import { prettyDate } from '$lib/util';
-    import { Result } from 'postcss';
-    import { getContext, setContext } from 'svelte';
+    import { getContext } from 'svelte';
 
     /** @type {import('./$types').PageData} */
     export let data;
 
     const { header } = getContext(HeaderContext)
     const { title } = getContext(TitleContext)
+    const { subheader } = getContext(SubheaderContext)
 
     $header = data.town_name?.replaceAll("_" , " ")
     $title = `${data.town_name?.replaceAll("_" , " ")} - EarthMC stats`
+    $subheader = "Town"
 
 </script>
+
+<OpenGraph title={`${data.town_name?.replaceAll("_" , " ")} - Town`} description={`${data.town.stats.balance} gold ${data.town.residents.length} residents ${data.town.stats.numTownBlocks} chunks`}/>
 
 <div class="flex flex-col items-center m-3">
 
@@ -50,6 +54,9 @@
             <LeaderInfo name={data.town.strings.mayor} uuid={data.leader_uuid}/>
 
             <div class="block">
+                <i><i class="bi bi-info-circle"></i> Board</i>
+                <p>{data.town.strings.board}</p>
+
                 <i><i class="bi bi-lightbulb"></i> Status</i>
 
                 <br>
