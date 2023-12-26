@@ -4,7 +4,7 @@
      * @type {string|any}
      */
     export let name;
-    export let type = "town" || "nation"
+    export let type = "town" || "nation" || "resident"
 
 </script>
 
@@ -14,7 +14,7 @@
 
 {:else}
 
-<span>{name}</span>
+<span><a href={`/${type}/${name}`}>{name}</a></span>
 
 {/if}
 

@@ -11,6 +11,31 @@ export function prettyDate(date) {
 
 /**
  * 
+ * @param {number} time 
+ * @returns {string}
+ */
+export function prettyDuration(time) {
+    
+    time = time / 1000
+
+    if (time > 24 * 60 * 60) {
+
+        return `${Math.floor(time / (60 * 60 * 24))} days`
+        
+    } else if(time > 60 * 60) {
+        
+        return `${Math.floor(time / (60 * 60))} hours`
+
+    } else {
+
+        return `${Math.floor(time / 60)} minutes`
+
+    }
+
+}
+
+/**
+ * 
  * @param {number} number 
  * @param {number} min 
  * @param {number} max 

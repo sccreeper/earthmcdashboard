@@ -58,7 +58,7 @@
     <div class="search">
         <input
             type="text"
-            placeholder="Search for a player, town or nation"
+            placeholder="Search for a town or nation"
             bind:value={search_value}
         />
         <button on:click={updateTable}>Search</button>

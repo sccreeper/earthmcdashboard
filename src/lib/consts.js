@@ -1,4 +1,5 @@
 export const APIBase = "https://api.earthmc.net/v1/aurora"
+export const APIBaseV2 = "https://api.earthmc.net/v2/aurora"
 export const SkinAPIBase = "https://api.mineatar.io"
 
 export const TitleContext = "title"

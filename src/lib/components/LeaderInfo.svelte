@@ -7,6 +7,8 @@
 
 </script>
 
+<a href="/resident/{name}">
+
 <div class="flex flex-col h-24 w-24">
 
     <strong>Leader</strong>
@@ -18,6 +20,8 @@
     </div>
 
 </div>
+
+</a>
 
 <style>
     div {
