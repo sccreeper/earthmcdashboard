@@ -15,13 +15,13 @@
     const { title } = getContext(TitleContext)
     const { subheader } = getContext(SubheaderContext)
 
-    $header = data.nation_name?.replaceAll("_" , " ")
+    $header = data.nation.name.replaceAll("_" , " ")
     $subheader = "Nation"
-    $title = `${data.nation_name?.replaceAll("_" , " ")} - EarthMC stats`
+    $title = `${data.nation.name.replaceAll("_" , " ")} - EarthMC stats`
 
 </script>
 
-<OpenGraph title={`${data.nation_name?.replaceAll("_" , " ")} - Nation`} description={`${data.nation.stats.balance} gold ${data.nation.towns.length} towns ${data.nation.stats.numTownBlocks} chunks`}/>
+<OpenGraph title={`${data.nation.name.replaceAll("_" , " ")} - Nation`} description={`${data.nation.stats.balance} gold ${data.nation.towns.length} towns ${data.nation.stats.numTownBlocks} chunks`}/>
 
 <div class="flex flex-col items-center m-3">
 
@@ -52,11 +52,11 @@
         <h1 class="table-heading">Info</h1>
 
         <div class="grid grid-cols-2">
-            <LeaderInfo name={data.nation.strings.king} uuid={data.leader_uuid}/>
+            <LeaderInfo name={data.nation.king.name} uuid={data.nation.king.uuid}/>
 
             <div class="block">
                 <i><i class="bi bi-info-circle"></i> Board</i>
-                <p>{data.nation.strings.board}</p>
+                <p>{data.nation.board}</p>
 
                 <i><i class="bi bi-lightbulb"></i> Status</i>
 
@@ -69,17 +69,17 @@
 
                 <i><i class="bi bi-houses"></i> Capital</i>
                 <br>
-                <a href="/town/{data.nation.strings.capital}">{data.nation.strings.capital.replaceAll("_", " ")}</a>
+                <a href="/town/{data.nation.capital.uuid}">{data.nation.capital.name.replaceAll("_", " ")}</a>
                 <br>
                 <i><i class="bi bi-geo-alt"></i> Spawn</i>
                 <br>
-                <Coordinates x={data.nation.spawn.x} y={data.nation.spawn.y} z={data.nation.spawn.z}/>
+                <Coordinates x={data.nation.coordinates.spawn.x} y={data.nation.coordinates.spawn.y} z={data.nation.coordinates.spawn.z}/>
                 <br>
                 <i><i class="bi bi-calendar"></i> Founded</i>
                 <p>{prettyDate(new Date(data.nation.timestamps.registered))}</p>
                 <i><i class="bi bi-palette"></i> Colour</i>
                 <br>
-                <p> <span style="color: #{data.hex_code}">⏺</span> #{data.hex_code}</p>
+                <p> <span style="color: #{data.nation.dynmapColour}">⏺</span> #{data.nation.dynmapColour}</p>
 
 
             </div>

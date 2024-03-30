@@ -5,7 +5,7 @@
 
 
     /**
-     * @type {any[]}
+     * @type {import('$lib/api').EntitySkeleton[]}
      */
     export let list;
     /**
@@ -61,7 +61,7 @@
 
 {#each list.slice(ranges[page-1][0], ranges[page-1][1]) as item }
 
-<EntityResult name={item} type={type}/>
+<EntityResult data={item} type={type}/>
 
 {/each}
 
@@ -75,7 +75,7 @@
 
 {#each list as item }
 
-<EntityResult name={item} type={type}/>
+<EntityResult data={item} type={type}/>
 
 {/each}
 

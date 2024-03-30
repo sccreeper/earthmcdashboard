@@ -1,7 +1,7 @@
 <script>
     import OpenGraph from '$lib/components/OpenGraph.svelte';
     import StatusBool from '$lib/components/StatusBool.svelte';
-import { HeaderContext, SkinAPIBase, SubheaderContext, TitleContext } from '$lib/consts';
+    import { HeaderContext, SkinAPIBase, SubheaderContext, TitleContext } from '$lib/consts';
     import { prettyDate, prettyDuration } from '$lib/util';
     import { getContext } from 'svelte';
 
@@ -19,7 +19,7 @@ import { HeaderContext, SkinAPIBase, SubheaderContext, TitleContext } from '$lib
 
 </script>
 
-<OpenGraph title={data.resident.name} description={`${data.resident.town.replaceAll("_", " ")}, ${data.resident.nation.replaceAll("_", " ")}`}/>
+<OpenGraph title={data.resident.name} description={`${data.resident.town.name.replaceAll("_", " ")}, ${data.resident.nation.name.replaceAll("_", " ")}`}/>
 
 <div class="flex flex-col items-center m-3">
 
@@ -52,7 +52,7 @@ import { HeaderContext, SkinAPIBase, SubheaderContext, TitleContext } from '$lib
             <br>
             <i><i class="bi bi-globe"></i> Town</i>
             <br>
-            <a href="/town/{data.resident.town}">{data.resident.town}</a>
+            <a href="/town/{data.resident.town.uuid}">{data.resident.town.name.replaceAll("_", " ")}</a>
             {/if}
 
             <br>

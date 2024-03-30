@@ -1,21 +1,24 @@
-import { APIBase } from '../lib/consts';
+import { APIBaseV3 } from '../lib/consts';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
 
-    const town_res = await fetch(APIBase + "/towns")
-    const town_json = await town_res.json()
+    const town_res = await fetch(APIBaseV3 + "/towns")
+    /** @type {import('$lib/api.js').EntitySkeleton[]}  */
+    const town_array = await town_res.json()
 
-    const nation_res = await fetch(APIBase + "/nations")
-    const nation_json = await nation_res.json()
+    const nation_res = await fetch(APIBaseV3 + "/nations")
+    /** @type {import('$lib/api.js').EntitySkeleton[]}  */
+    const nation_array = await nation_res.json()
 
-    const server_status = await fetch("https://api.mcstatus.io/v2/status/java/play.earthmc.net")
+    const server_status = await fetch(APIBaseV3)
+    /** @type {import('$lib/api.js').ServerStatus}  */
     const status_json = await server_status.json()
 
     return {
-        towns: town_json.allTowns, 
-        nations: nation_json.allNations, 
-        online: status_json.players.online
+        towns: town_array, 
+        nations: nation_array, 
+        online: status_json.stats.numOnlinePlayers
     }
 
 }

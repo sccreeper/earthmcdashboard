@@ -1,10 +1,10 @@
-import { APIBase, APIBaseV2 } from '$lib/consts'
+import { APIBaseV3 } from '$lib/consts'
 import { error } from '@sveltejs/kit'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
 
-    const resident_resp = await fetch(APIBaseV2 + "/residents/" + params.name)
+    const resident_resp = await fetch(APIBaseV3 + "/players?query=" + params.uuid)
     const ok = await resident_resp.ok
 
     if (!ok) {
@@ -17,7 +17,8 @@ export async function load({ params }) {
 
     //console.log(await resident_resp.text())
 
-    const resident_json = await resident_resp.json()
+    /** @type {import('$lib/api').Player} */
+    const resident_json = (await resident_resp.json())[0]
 
     if (resident_json.status.isNPC) {
         throw error(404, "Resident is an NPC")

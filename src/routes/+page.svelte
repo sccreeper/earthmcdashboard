@@ -2,8 +2,7 @@
     import OpenGraph from "$lib/components/OpenGraph.svelte";
     import ResultsList from "$lib/components/ResultsList.svelte";
     import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
-    import { list } from "postcss";
-    import { getContext, onMount, setContext } from "svelte";
+    import { getContext } from "svelte";
 
     /** @type {import('./$types').PageData} */
     export let data;
@@ -11,23 +10,30 @@
     let previous_search_value = "";
 
     /**
-     * @type {Object.<string[], string[]>}
+     * @typedef {object} settlementTable
+     * @property {import('$lib/api').EntitySkeleton[]} towns
+     * @property {import('$lib/api').EntitySkeleton[]} nations
      */
-    let table_data = { towns: [], nations: [] };
+
+    /**
+     * @type {settlementTable}
+     */
+    let table_data = {towns: [], nations: []}
 
     function updateTable() {
         previous_search_value = search_value
 
+        //@ts-ignore
         table_data = { towns: [], nations: [] };
 
-        data.towns.forEach((/** @type {string} */ element) => {
-            if (element.toLowerCase().includes(search_value.toLowerCase())) {
+        data.towns.forEach((/** @type {import('$lib/api').EntitySkeleton} */ element) => {
+            if (element.name.toLowerCase().includes(search_value.toLowerCase())) {
                 table_data.towns = [...table_data.towns, element];
             }
         });
 
-        data.nations.forEach((/** @type {string} */ element) => {
-            if (element.toLowerCase().includes(search_value.toLowerCase())) {
+        data.nations.forEach((/** @type {import('$lib/api').EntitySkeleton} */ element) => {
+            if (element.name.toLowerCase().includes(search_value.toLowerCase())) {
                 table_data.nations = [...table_data.nations, element];
             }
         });

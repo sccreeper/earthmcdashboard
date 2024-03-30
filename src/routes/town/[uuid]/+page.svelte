@@ -15,13 +15,13 @@
     const { title } = getContext(TitleContext)
     const { subheader } = getContext(SubheaderContext)
 
-    $header = data.town_name?.replaceAll("_" , " ")
-    $title = `${data.town_name?.replaceAll("_" , " ")} - EarthMC stats`
+    $header = data.town.name.replaceAll("_" , " ")
+    $title = `${data.town.name.replaceAll("_" , " ")} - EarthMC stats`
     $subheader = "Town"
 
 </script>
 
-<OpenGraph title={`${data.town_name?.replaceAll("_" , " ")} - Town`} description={`${data.town.stats.balance} gold ${data.town.residents.length} residents ${data.town.stats.numTownBlocks} chunks`}/>
+<OpenGraph title={`${data.town.name.replaceAll("_" , " ")} - Town`} description={`${data.town.stats.balance} gold ${data.town.residents.length} residents ${data.town.stats.numTownBlocks} chunks`}/>
 
 <div class="flex flex-col items-center m-3">
 
@@ -51,11 +51,11 @@
         <h1 class="table-heading">Info</h1>
 
         <div class="grid grid-cols-2">
-            <LeaderInfo name={data.town.strings.mayor} uuid={data.leader_uuid}/>
+            <LeaderInfo name={data.town.mayor.name} uuid={data.town.mayor.uuid}/>
 
             <div class="block">
                 <i><i class="bi bi-info-circle"></i> Board</i>
-                <p>{data.town.strings.board}</p>
+                <p>{data.town.board}</p>
 
                 <i><i class="bi bi-lightbulb"></i> Status</i>
 
@@ -68,22 +68,22 @@
                 <StatusBool label="Capital" value={data.town.status.isCapital}></StatusBool>
                 {/if}
 
-                <StatusBool label="PVP" value={data.town.perms.flagPerms.pvp}></StatusBool>
-                <StatusBool label="Explosion" value={data.town.perms.flagPerms.explosion}></StatusBool>
-                <StatusBool label="Fire" value={data.town.perms.flagPerms.fire}></StatusBool>
-                <StatusBool label="Mob spawning" value={data.town.perms.flagPerms.mobs}></StatusBool>
+                <StatusBool label="PVP" value={data.town.perms.flags.pvp}></StatusBool>
+                <StatusBool label="Explosion" value={data.town.perms.flags.explosion}></StatusBool>
+                <StatusBool label="Fire" value={data.town.perms.flags.fire}></StatusBool>
+                <StatusBool label="Mob spawning" value={data.town.perms.flags.mobs}></StatusBool>
 
                 {#if data.town.timestamps.joinedNationAt != 0}
                 <br>
                 <i><i class="bi bi-globe"></i> Nation</i>
                 <br>
-                <a href="/nation/{data.town.affiliation.nation}">{data.town.affiliation.nation}</a>
+                <a href="/nation/{data.town.nation.uuid}">{data.town.nation.name}</a>
                 {/if}
 
                 <br>
                 <i><i class="bi bi-geo-alt"></i> Spawn</i>
                 <br>
-                <Coordinates x={data.town.spawn.x} y={data.town.spawn.y} z={data.town.spawn.z}/>
+                <Coordinates x={data.town.coordinates.spawn.x} y={data.town.coordinates.spawn.y} z={data.town.coordinates.spawn.z}/>
                 <br>
                 <i><i class="bi bi-calendar"></i> Founded</i>
                 <p>{prettyDate(new Date(data.town.timestamps.registered))}</p>

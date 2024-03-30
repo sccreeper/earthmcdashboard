@@ -7,7 +7,7 @@
 
 </script>
 
-<a href="/resident/{name}">
+<a href="/resident/{uuid}">
 
 <div class="flex flex-col h-24 w-24">
 
