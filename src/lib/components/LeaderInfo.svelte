@@ -23,7 +23,7 @@
 
 </a>
 
-<style>
+<style lang="postcss">
     div {
         @apply text-center;
     }

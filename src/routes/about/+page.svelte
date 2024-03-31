@@ -36,7 +36,7 @@ import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
 
 </div>
 
-<style>
+<style lang="postcss">
 
     .body-text > a {
         @apply underline;

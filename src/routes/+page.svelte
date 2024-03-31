@@ -98,7 +98,7 @@
     </div>
 {/if}
 
-<style>
+<style lang="postcss">
     .search-box-container {
         @apply w-full;
         @apply flex;

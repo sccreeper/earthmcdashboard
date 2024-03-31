@@ -76,7 +76,7 @@
 
 </div>
 
-<style>
+<style lang="postcss">
 
 .raw-skin {
 

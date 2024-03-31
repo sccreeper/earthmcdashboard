@@ -4,7 +4,7 @@
     import OpenGraph from '$lib/components/OpenGraph.svelte';
     import ResultsList from '$lib/components/ResultsList.svelte';
     import StatusBool from '$lib/components/StatusBool.svelte';
-    import { HeaderContext, SubheaderContext, TitleContext } from '$lib/consts';
+    import { DefaultBoards, HeaderContext, SubheaderContext, TitleContext } from '$lib/consts';
     import { prettyDate } from '$lib/util';
     import { getContext } from 'svelte';
 
@@ -55,7 +55,11 @@
 
             <div class="block">
                 <i><i class="bi bi-info-circle"></i> Board</i>
+                {#if data.town.board == DefaultBoards.Town}
+                <p>No board message set</p>
+                {:else}
                 <p>{data.town.board}</p>
+                {/if}
 
                 <i><i class="bi bi-lightbulb"></i> Status</i>
 
@@ -102,7 +106,7 @@
 
 </div>
 
-<style>
+<style lang="postcss">
 
     .headline-stats {
         @apply flex;

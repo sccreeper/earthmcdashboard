@@ -4,7 +4,7 @@
     import OpenGraph from '$lib/components/OpenGraph.svelte';
     import ResultsList from '$lib/components/ResultsList.svelte';
     import StatusBool from '$lib/components/StatusBool.svelte';
-    import { HeaderContext, SubheaderContext, TitleContext } from '$lib/consts';
+    import { DefaultBoards, HeaderContext, SubheaderContext, TitleContext } from '$lib/consts';
     import { prettyDate } from '$lib/util';
     import { getContext } from 'svelte';
 
@@ -56,7 +56,12 @@
 
             <div class="block">
                 <i><i class="bi bi-info-circle"></i> Board</i>
+
+                {#if data.nation.board == DefaultBoards.Nation}
+                <p>No board message set</p>
+                {:else}
                 <p>{data.nation.board}</p>
+                {/if}
 
                 <i><i class="bi bi-lightbulb"></i> Status</i>
 
@@ -79,7 +84,10 @@
                 <p>{prettyDate(new Date(data.nation.timestamps.registered))}</p>
                 <i><i class="bi bi-palette"></i> Colour</i>
                 <br>
-                <p> <span style="color: #{data.nation.dynmapColour}">⏺</span> #{data.nation.dynmapColour}</p>
+                <p> 
+                    <span class="nation-colour" style:background-color="#{data.nation.dynmapColour}" style:border-color="#{data.nation.dynmapOutline}"></span> 
+                    #{data.nation.dynmapColour} 
+                </p>
 
 
             </div>
@@ -91,7 +99,7 @@
 
 </div>
 
-<style>
+<style lang="postcss">
 
     .headline-stats {
         @apply flex;
@@ -101,6 +109,14 @@
 
     .headline-stats > p {
         @apply m-1;
+    }
+
+    .nation-colour {
+        @apply inline-block;
+        @apply border-2;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
     }
 
 </style>
