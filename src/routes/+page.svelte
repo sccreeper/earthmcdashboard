@@ -61,14 +61,12 @@
 
 <!-- Search box -->
 <div class="search-box-container">
-    <div class="search">
         <input
             type="text"
             placeholder="Search for a town or nation"
             bind:value={search_value}
         />
         <button on:click={updateTable}>Search</button>
-    </div>
 </div>
 
 <!-- Search results for nations & towns -->
@@ -100,19 +98,22 @@
 
 <style lang="postcss">
     .search-box-container {
-        @apply w-full;
         @apply flex;
-        @apply justify-center;
+
+        @apply flex-col;
+        @apply sm:flex-row;
+        @apply items-center;
+        @apply sm:justify-center;
+
+        @apply gap-2;
+
         @apply mt-3;
         @apply mb-3;
     }
 
-    .search input {
-        @apply w-3/4;
-    }
-
-    .search {
-        @apply w-1/2;
+    .search-box-container input {
+        @apply w-5/6;
+        @apply sm:w-96;
     }
 
     .stats-container {
@@ -126,7 +127,8 @@
     }
 
     .stats-container p {
-        @apply text-xl;
+        @apply text-lg;
+        @apply sm:text-xl;
     }
 
     .stats-container span {

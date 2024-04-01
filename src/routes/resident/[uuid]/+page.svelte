@@ -40,7 +40,7 @@
 
     </div>
 
-    <div class="w-96">
+    <div class="text-sm sm:text-base">
 
         <h1 class="table-heading">Info</h1>
 

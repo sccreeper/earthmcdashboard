@@ -36,9 +36,9 @@
 
 <hr>
 
-<div class="grid grid-cols-2 w-3/4">
+<div class="grid grid-cols-1 sm:grid-cols-2 w-11/12 sm:w-3/4">
 
-    <div class="w-96">
+    <div class="w-80 sm:w-64 lg:w-96">
 
         <h1 class="table-heading">Towns</h1>
 
@@ -51,7 +51,7 @@
 
         <h1 class="table-heading">Info</h1>
 
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 text-sm sm:text-base">
             <LeaderInfo name={data.nation.king.name} uuid={data.nation.king.uuid}/>
 
             <div class="block">
@@ -104,7 +104,8 @@
     .headline-stats {
         @apply flex;
         @apply flex-row;
-        @apply text-xl;
+        @apply text-lg;
+        @apply sm:text-xl;        
     }
 
     .headline-stats > p {

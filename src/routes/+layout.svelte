@@ -57,11 +57,9 @@
 
     <slot/>
 
+    <a class="text-sm italic sm:text-base" target="_blank" href="https://github.com/sccreeper/earthmcdashboard/commit/{commitHash}">{commitHash.substring(0, 8)} - {commitMessage}</a>
 </div>
 
-<div class="footer">
-    <a target="_blank" href="https://github.com/sccreeper/earthmcdashboard/commit/{commitHash}">{commitHash.substring(0, 8)} - {commitMessage}</a>
-</div>
 
 <style lang="postcss">
 
@@ -103,7 +101,8 @@
     }
 
     .header {
-        @apply text-6xl;
+        @apply text-4xl;
+        @apply sm:text-6xl;
         @apply font-bold;
         @apply text-white;
         @apply drop-shadow-2xl;
@@ -114,13 +113,6 @@
         @apply font-medium;
         @apply text-white;
         @apply drop-shadow-2xl;
-    }
-
-    .footer {
-        @apply text-center;
-        @apply text-sm;
-        @apply float-right;
-        @apply m-2;
     }
 
     .loading-bar {
