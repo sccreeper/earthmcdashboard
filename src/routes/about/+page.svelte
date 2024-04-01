@@ -1,6 +1,6 @@
 <script>
     import OpenGraph from "$lib/components/OpenGraph.svelte";
-import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
+    import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
     import { getContext } from "svelte";
 
     const { title } = getContext(TitleContext)
@@ -18,10 +18,10 @@ import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
 
 <div class="flex flex-col items-center justify-center">
 
-    <div class="w-2/3 mt-6">
+    <div class="w-11/12 sm:w-2/3 mt-6">
 
-        <p class="text-xl body-text">This is a hobby project which uses EarthMC's <a target="_blank" href="https://earthmc.net/docs/api">REST API</a> to show information about all the towns and nations on the server. 
-            It also makes use of other API's, notably <a target="_blank" href="https://mcstatus.io">mcstatus.io</a>, <a target="_blank" href="https://playerdb.co/">playerdb.co</a> and <a target="_blank" href="https://mineatar.io">mineatar.io</a> to get player skins and general server statistics.
+        <p class="text-base sm:text-xl body-text">This is a hobby project which uses EarthMC's <a target="_blank" href="https://earthmc.net/docs/api">REST API</a> to show information about all the towns and nations on the server. 
+            It also makes use of <a target="_blank" href="https://mineatar.io">mineatar.io</a> to get player skins.
             It is written in <a target="_blank" href="https://kit.svelte.dev/">SvelteKit</a> and runs on Cloudflare Pages.
         </p>
 
@@ -42,7 +42,13 @@ import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
         @apply underline;
     }
 
+    .links {
+        @apply m-4;
+    }
+
     .links > a {
+        @apply text-xs;
+        @apply sm:text-base;
         @apply m-4;
     }
 
