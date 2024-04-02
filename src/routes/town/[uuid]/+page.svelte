@@ -53,7 +53,7 @@
         <div class="grid grid-cols-2 text-sm sm:text-base">
             <LeaderInfo name={data.town.mayor.name} uuid={data.town.mayor.uuid}/>
 
-            <div class="block">
+            <div class="block info-table">
                 <i><i class="bi bi-info-circle"></i> Board</i>
                 {#if data.town.board == DefaultBoards.Town}
                 <p>No board message set</p>

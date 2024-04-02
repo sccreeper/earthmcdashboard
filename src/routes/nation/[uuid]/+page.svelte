@@ -54,7 +54,7 @@
         <div class="grid grid-cols-2 text-sm sm:text-base">
             <LeaderInfo name={data.nation.king.name} uuid={data.nation.king.uuid}/>
 
-            <div class="block">
+            <div class="block info-table">
                 <i><i class="bi bi-info-circle"></i> Board</i>
 
                 {#if data.nation.board == DefaultBoards.Nation}

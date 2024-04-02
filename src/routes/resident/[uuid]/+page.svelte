@@ -1,5 +1,6 @@
 <script>
-    import OpenGraph from '$lib/components/OpenGraph.svelte';
+    import Button from '$lib/components/Button.svelte';
+import OpenGraph from '$lib/components/OpenGraph.svelte';
     import StatusBool from '$lib/components/StatusBool.svelte';
     import { HeaderContext, SkinAPIBase, SubheaderContext, TitleContext } from '$lib/consts';
     import { prettyDate, prettyDuration } from '$lib/util';
@@ -16,6 +17,14 @@
     $header = data.resident.name;
     $subheader = "Resident"
     $title = `${data.resident.name} - EarthMC stats`
+
+    //TODO: change name of skin
+    function downloadSkin() {
+        let a = document.createElement("a")
+        a.href = `${SkinAPIBase}/skin/${data.resident.uuid}?download=true`
+        //a.download = `${data.resident.name} skin.png`
+        a.click();
+    }
 
 </script>
 
@@ -36,11 +45,11 @@
 
         <br>
 
-        <a href="{SkinAPIBase}/skin/{data.resident.uuid}?download=true"><i class="bi bi-download"></i> Download</a>
+        <Button text="Download skin" icon="download" callback={downloadSkin}/>
 
     </div>
 
-    <div class="text-sm sm:text-base">
+    <div class="text-sm sm:text-base info-table">
 
         <h1 class="table-heading">Info</h1>
 

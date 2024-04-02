@@ -1,4 +1,5 @@
 <script>
+    import Button from "$lib/components/Button.svelte";
     import OpenGraph from "$lib/components/OpenGraph.svelte";
     import ResultsList from "$lib/components/ResultsList.svelte";
     import { HeaderContext, SubheaderContext, TitleContext } from "$lib/consts";
@@ -66,7 +67,7 @@
             placeholder="Search for a town or nation"
             bind:value={search_value}
         />
-        <button on:click={updateTable}>Search</button>
+        <Button callback={updateTable} text="Search" icon="search"/>
 </div>
 
 <!-- Search results for nations & towns -->

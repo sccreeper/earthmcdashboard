@@ -34,29 +34,6 @@ input[type=number] {
     @apply w-16;
 }
 
-button {
-
-    @apply bg-cyan-700;
-    @apply text-white;
-    @apply rounded-sm;
-    @apply p-1;
-    @apply pl-2;
-    @apply pr-2;
-    @apply border-2;
-    @apply border-cyan-700;
-    @apply transition-all;
-
-}
-
-button:focus,button:hover {
-
-    @apply bg-transparent;
-    @apply text-cyan-700;
-
-}
-
-
-
 .res-table > span {
     display: block;
     @apply p-2;
@@ -71,4 +48,10 @@ button:focus,button:hover {
     @apply text-center;
     @apply font-semibold;
     @apply text-lg;
+}
+
+.info-table {
+    @apply bg-gray-200;
+    @apply p-2;
+    @apply rounded-md;
 }
