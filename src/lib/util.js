@@ -1,4 +1,5 @@
-import { Months } from "./consts";
+import { error, fail } from "@sveltejs/kit";
+import { APIBaseV3, Months } from "./consts";
 
 /**
  * 
@@ -43,4 +44,32 @@ export function prettyDuration(time) {
  */
 export function clamp(number, min, max) {
     return Math.max(min, Math.min(number, max));
-  }
+}
+
+/**
+ * 
+ * @param {string} uuid 
+ * @param {string} type 
+ * @returns {Promise<any>}
+ */
+export async function fetchEntity(uuid, type) {
+    
+    const resp =  await fetch(
+        APIBaseV3 + `/${type}`,
+        {
+            method: "POST",
+            body: JSON.stringify({
+                query: [ uuid ]
+            })
+        }
+    )
+
+    if (resp.status == 404) {
+        throw error(resp.status, `${type} "${uuid}" not found`) 
+    } else if (!resp.ok) {
+        throw error(resp.status, resp.statusText)
+    }
+
+    return await resp.json()
+
+}

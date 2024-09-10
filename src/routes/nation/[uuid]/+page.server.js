@@ -1,25 +1,15 @@
 import { APIBaseV3 } from '$lib/consts'
+import { fetchEntity } from '$lib/util'
 import { error } from '@sveltejs/kit'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
 
-    const nation_res = await fetch(APIBaseV3 + "/nations?query=" + params.uuid)
-    const ok = await nation_res.ok
-
-    if (!ok) {
-        if (nation_res.status == 404) {
-            throw error(404, "Nation does not exist")
-        } else {
-            throw error(nation_res.status,  await nation_res.text())
-        }
-    }
-
-    /** @type {import('$lib/api').Nation} */
-    const nation_json = (await nation_res.json())[0]
+    /** @type {import("$lib/api").Town} */
+    const nation_res = (await fetchEntity(params.uuid, "nations"))[0]
 
     return {
-        nation: nation_json,
+        nation: nation_res, 
         success: true
     }
 
